@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelpDeskAPI.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230223024316_initial_whateverIWantHereYouCantStopMeWithNoSpaces")]
-    partial class initial_whateverIWantHereYouCantStopMeWithNoSpaces
+    [Migration("20230223234842_newstuff")]
+    partial class newstuff
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,31 +97,16 @@ namespace HelpDeskAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TicketUser", b =>
-                {
-                    b.Property<int>("TicketsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TicketsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("TicketUser");
-                });
-
             modelBuilder.Entity("HelpDeskAPI.Models.Favorite", b =>
                 {
                     b.HasOne("HelpDeskAPI.Models.Ticket", "Ticket")
-                        .WithMany()
+                        .WithMany("Favorites")
                         .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HelpDeskAPI.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -131,19 +116,14 @@ namespace HelpDeskAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TicketUser", b =>
+            modelBuilder.Entity("HelpDeskAPI.Models.Ticket", b =>
                 {
-                    b.HasOne("HelpDeskAPI.Models.Ticket", null)
-                        .WithMany()
-                        .HasForeignKey("TicketsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Favorites");
+                });
 
-                    b.HasOne("HelpDeskAPI.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("HelpDeskAPI.Models.User", b =>
+                {
+                    b.Navigation("Favorites");
                 });
 #pragma warning restore 612, 618
         }

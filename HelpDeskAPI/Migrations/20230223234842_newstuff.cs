@@ -4,7 +4,7 @@
 
 namespace HelpDeskAPI.Migrations
 {
-    public partial class initial_whateverIWantHereYouCantStopMeWithNoSpaces : Migration
+    public partial class newstuff : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,30 +65,6 @@ namespace HelpDeskAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TicketUser",
-                columns: table => new
-                {
-                    TicketsId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TicketUser", x => new { x.TicketsId, x.UsersId });
-                    table.ForeignKey(
-                        name: "FK_TicketUser_Tickets_TicketsId",
-                        column: x => x.TicketsId,
-                        principalTable: "Tickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TicketUser_Users_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Favorites_TicketId",
                 table: "Favorites",
@@ -98,20 +74,12 @@ namespace HelpDeskAPI.Migrations
                 name: "IX_Favorites_UserId",
                 table: "Favorites",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketUser_UsersId",
-                table: "TicketUser",
-                column: "UsersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Favorites");
-
-            migrationBuilder.DropTable(
-                name: "TicketUser");
 
             migrationBuilder.DropTable(
                 name: "Tickets");
