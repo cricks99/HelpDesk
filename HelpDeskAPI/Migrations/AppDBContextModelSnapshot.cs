@@ -95,6 +95,21 @@ namespace HelpDeskAPI.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("TicketUser", b =>
+                {
+                    b.Property<int>("TicketsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TicketsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("TicketUser");
+                });
+
             modelBuilder.Entity("HelpDeskAPI.Models.Favorite", b =>
                 {
                     b.HasOne("HelpDeskAPI.Models.Ticket", "Ticket")
@@ -104,7 +119,6 @@ namespace HelpDeskAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("HelpDeskAPI.Models.User", "User")
-                        .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -114,14 +128,8 @@ namespace HelpDeskAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HelpDeskAPI.Models.Ticket", b =>
                 {
-                    b.Navigation("Favorites");
-                });
 
-            modelBuilder.Entity("HelpDeskAPI.Models.User", b =>
-                {
-                    b.Navigation("Favorites");
                 });
 #pragma warning restore 612, 618
         }
