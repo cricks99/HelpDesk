@@ -4,6 +4,7 @@ namespace HelpDeskAPI.Models
   {
     public int Id { get; set; }
     public int OpenUserId { get; set; }
+    public string Title { get; set; }
     public string Description { get; set; }
     public string? Resolution { get; set; }
     public int? ClosingUserId { get; set; }
