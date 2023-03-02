@@ -34,6 +34,7 @@ namespace HelpDeskAPI.Controllers
     {
       Ticket newTicketAdded = new Ticket
       {
+        Title = ticket.Title,
         OpenUserId = ticket.OpenUserId,
         Description = ticket.Description
       };

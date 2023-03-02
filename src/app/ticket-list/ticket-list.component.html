@@ -1,4 +1,13 @@
 <h1>Welcome to the help desk. Here are all the tickets:</h1>
 <table> 
-<tr><th>Id</th><th>Open User Id</th><th>Is Closed</th></tr>
+<tr><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
+<tr *ngFor="let ticket of tickets">
+    <td>{{ticket.id}}</td>
+    <td>{{ticket.title}}</td>
+    <td>{{ticket.isClosed}}</td>   
+</tr>
 </table>    
+<div>
+
+    <app-ticket-detail></app-ticket-detail>
+</div>

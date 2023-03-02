@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TicketRepositoryService } from './ticket-repository.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HelpDesk';
+
+
+constructor(private repositoryService: TicketRepositoryService){ }
+
 }

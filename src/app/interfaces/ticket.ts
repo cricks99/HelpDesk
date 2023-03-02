@@ -1,6 +1,7 @@
 export interface ITicket{
     id: number;
-    OpenUserId: number;
+    openUserId: number;
+    title: string;
     description: string;
     resolution: string;
     closingUserId: number;
