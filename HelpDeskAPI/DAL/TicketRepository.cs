@@ -34,7 +34,10 @@ namespace HelpDeskAPI.DAL
       _dbContext.SaveChanges();
       return true;
     }
-
+    public List<User> GetUsers()
+    {
+      return _dbContext.Users.ToList();
+    }
     /*public void FavoriteSelect(int userId, int ticketId)
     {
       if

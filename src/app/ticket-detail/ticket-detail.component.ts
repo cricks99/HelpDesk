@@ -11,33 +11,17 @@ import { TicketRepositoryService } from '../ticket-repository.service';
 })
 export class TicketDetailComponent {
 
- ticketDetails: ITicket | undefined;
+ ticketDetails: any;
  constructor(private repo: TicketRepositoryService){}
  ngOnInit() : void{
   this.repo.getTicketDetails(this.ticketId).subscribe(
     (response) => {
       this.ticketDetails = response;});
  }
-  
-  showDetails: Boolean = false;
-  buttonText: string = "Details"
 
-  @Input () ticketId = 1;
+  @Input () ticketId: number = 1;
 
-
-
-
-
-  toggleDetails(): void{
-    this.showDetails = !this.showDetails;
-    if(this.showDetails){
-      this.buttonText = "Hide";
-    }
-    else
-    {
-      this.buttonText = "Show";
-    }
-    }
+ 
 }
 
 

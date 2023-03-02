@@ -20,6 +20,11 @@ namespace HelpDeskAPI.Controllers
     {
       return repo.GetAllTickets();
     }
+    [HttpGet("User")]
+    public List<User> GetUsers()
+    {
+      return repo.GetUsers();
+    }
 
     // GET api/<TicketController>/5
     [HttpGet("{id}")]

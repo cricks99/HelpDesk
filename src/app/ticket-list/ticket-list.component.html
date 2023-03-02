@@ -1,13 +1,18 @@
-<h1>Welcome to the help desk. Here are all the tickets:</h1>
+<h1>Welcome to the help desk.</h1>
+<select><option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option></select>
+
+<h1>Here are all the tickets:</h1>
 <table> 
 <tr><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
 <tr *ngFor="let ticket of tickets">
     <td>{{ticket.id}}</td>
     <td>{{ticket.title}}</td>
     <td>{{ticket.isClosed}}</td>   
+    <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
+    <!--<td><button (click)="favorite(user.id, ticket.id)">Favorite</button></td>-->
 </tr>
 </table>    
-<div>
-
-    <app-ticket-detail></app-ticket-detail>
+<div *ngIf="showDetails">
+    
+    <app-ticket-detail [ticketId] = ticketId></app-ticket-detail>
 </div>
