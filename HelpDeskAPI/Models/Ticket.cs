@@ -9,6 +9,6 @@ namespace HelpDeskAPI.Models
     public string? Resolution { get; set; }
     public int? ClosingUserId { get; set; }
     public bool IsClosed { get; set; }
-    public virtual List<Favorite> Favorites { get; set; }
+    public virtual List<Favorite>? Favorites { get; set; }
   }
 }

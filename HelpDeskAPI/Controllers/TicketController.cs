@@ -44,6 +44,7 @@ namespace HelpDeskAPI.Controllers
         Description = ticket.Description
       };
        repo.AddTicket(newTicketAdded);
+      return;
     }
 
   // PUT api/<TicketController>/5
