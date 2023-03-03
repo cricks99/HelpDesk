@@ -9,14 +9,21 @@ import { TicketRepositoryService } from '../ticket-repository.service';
 })
 export class UserListComponent {
 
-  userList : Iuser[] | undefined;
+  userList : any;
 
   constructor(private _ticketRepo : TicketRepositoryService){
     //
   }
 
   ngOnInit():void{
-    //
+    this.getUsers();
+  }
+
+  getUsers(){
+    this._ticketRepo.getUsers().subscribe(
+      (response) => {
+        this.userList = response;
+      });
   }
 
 }
