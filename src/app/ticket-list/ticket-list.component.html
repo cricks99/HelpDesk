@@ -1,5 +1,7 @@
 <h1>Welcome to the help desk.</h1>
-<select><option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option></select>
+<select>
+    <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
+</select>
 
 <h1>Here are all the tickets:</h1>
 <table> 
