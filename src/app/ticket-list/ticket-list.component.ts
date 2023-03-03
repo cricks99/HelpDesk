@@ -71,7 +71,6 @@ export class TicketListComponent {
         this.users = response;
       });
   }
-  
 
  /* favorite(userid: number, ticketid: number) {
     this.repositoryService.getFavoriteList().subscribe(
