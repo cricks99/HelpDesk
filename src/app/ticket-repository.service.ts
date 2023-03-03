@@ -17,7 +17,7 @@ export class TicketRepositoryService {
     return this.http.get(this.apiUri)
   }
   addNewTicket(ticket: ITicket) {
-    return this.http.post(`${this.apiUri}/add`, ticket);
+    return this.http.post(`${this.apiUri}/add`, ticket)
   }
   getTicketDetails(ticketId: number) {
     return this.http.get<ITicket>(`${this.apiUri}/${ticketId}`)

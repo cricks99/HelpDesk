@@ -25,6 +25,7 @@ export class TicketListComponent {
   buttonText: string = "Show";
   userid: number = -1;
   users: any; 
+  showNewTicket: boolean = false;
 
 
   ngOnInit(): void {
@@ -35,14 +36,15 @@ export class TicketListComponent {
   addNewTicket(form: NgForm) {
     let newTicket: ITicket = {
       id: -1,
-      title: form.form.value.Title,
-      openUserId: form.form.value.openUserId,
+      title: form.form.value.title,
+      openUserId: this.userid,
       description: form.form.value.description,
       resolution: '',
       closingUserId: 0,
       isClosed: false
 
     };
+    
 
     this.repositoryService.addNewTicket(newTicket).subscribe(
       () => {
@@ -52,6 +54,16 @@ export class TicketListComponent {
 
     form.resetForm();
   };
+
+  addTicketDisplay(): void {
+    this.showNewTicket = !this.showNewTicket;
+    if (this.showNewTicket) {
+      this.buttonText = "Hide";
+    }
+    else {
+      this.buttonText = "Show";
+    }
+  }
 
   getTickets() {
     this.repositoryService.getTicketList().subscribe(
@@ -71,6 +83,11 @@ export class TicketListComponent {
         this.users = response;
       });
   }
+  setuser(value: any){
+    this.userid = value.target.value;
+    }
+    
+  
   
 
  /* favorite(userid: number, ticketid: number) {
