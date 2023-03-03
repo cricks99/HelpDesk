@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ITicket } from './interfaces/ticket';
+import { Iuser } from './interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class TicketRepositoryService {
   }
   getFavorites(userid: number) {
     return this.http.get(this.apiFavorite)
+  }
+
+  getUserById(userId:number){
+    return this.http.get<Iuser>(`${this.apiUser}/${userId}`);
   }
 }
 
