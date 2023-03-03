@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Iuser } from '../interfaces/user';
 import { TicketRepositoryService } from '../ticket-repository.service';
 
@@ -9,15 +9,16 @@ import { TicketRepositoryService } from '../ticket-repository.service';
 })
 export class UserDetailComponent {
 
+  @Input() userId:number = 0;
+
   user:Iuser | undefined;
   constructor(private _ticketRepo:TicketRepositoryService){
     
   }
 
   ngOnInit():void{
-    //this._ticketRepo.getUserBy().subscribe(
-      //(response) => {
-        //this.ticketDetails = response;});
+    this._ticketRepo.getUserById(this.userId).subscribe(
+      (response) => {
+        this.user = response;});
   }
-
 }
