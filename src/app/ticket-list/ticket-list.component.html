@@ -1,23 +1,42 @@
 <h1>Welcome to the help desk.</h1>
 
-<select id="setuser" (change) = "setuser($event)"><option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option></select>
-<p>{{userid}}</p>
-<h1>Here are all the tickets:</h1>
-<table> 
-<tr><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
+<p *ngIf="userid == -1">
+    Before continuing, please select who you are:
+</p>
+
+<select id="setuser" (change) = "setuser($event)">
+    <option *ngIf="userid == -1" value="-1" selected>Choose User</option>
+    <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
+</select>
+
+<ng-container *ngIf="userid > 0">
+&nbsp;<button (click) = "toggleFavorites()">{{favoriteButtonText}}</button>
+
+<h1 *ngIf="!showOnlyFavorites">Here are all the tickets:</h1>
+<h1 *ngIf="showOnlyFavorites">Here are your bookmarked tickets:</h1>
+
+<table>
+<tr><th></th><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
 <tr *ngFor="let ticket of tickets">
-    <td>{{ticket.id}}</td>
-    <td>{{ticket.title}}</td>
-    <td>{{ticket.isClosed}}</td>  
-    <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
-    <!--<td><button (click)="favorite(user.id, ticket.id)">Favorite</button></td>-->
+    <ng-container *ngIf="!showOnlyFavorites || ticketIsFavorite(ticket.id)">
+        <td>
+        <button (click)="setUnsetFavorite(ticket.id, userid)" class="button-icons">
+            <i *ngIf="ticketIsFavorite(ticket.id)" class="fa fa-star" aria-hidden="true"></i>
+            <i *ngIf="!ticketIsFavorite(ticket.id)" class="fa fa-star-o" aria-hidden="true"></i>
+        </button>
+        </td>
+        <td>{{ticket.id}}</td>
+        <td>{{ticket.title}}</td>
+        <td>{{ticket.isClosed}}</td>  
+        <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
+    </ng-container>
 </tr>
 </table>    
 
 <div *ngIf="showDetails">
-    
     <app-ticket-detail [ticketId] = ticketId></app-ticket-detail>
 </div>
+
 <button (click) = "addTicketDisplay()">Open New Ticket</button>
 <div *ngIf="showNewTicket">
     <form #newTicket="ngForm" (ngSubmit)="addNewTicket(newTicket)">
@@ -26,3 +45,4 @@
         <p><button>Submit Ticket</button></p>
       </form>
 </div>
+</ng-container>
