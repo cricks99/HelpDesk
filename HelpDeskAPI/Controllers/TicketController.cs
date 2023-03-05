@@ -33,6 +33,19 @@ namespace HelpDeskAPI.Controllers
       return repo.GetbyId(id);
     }
 
+    
+    [HttpGet("Favorite")]
+    public List<Favorite> GetAllFavorites()
+    {
+      return repo.GetAllFavorites();
+    }
+
+    [HttpGet("Favorite/{id}")]
+    public List<Favorite> FindByFavorite(int id)
+    {
+      return repo.GetFavoriteByUserId(id);
+    }
+
     // POST api/<TicketController>
     [HttpPost("add")]
     public void addNewTicket(Ticket ticket)
@@ -76,8 +89,14 @@ namespace HelpDeskAPI.Controllers
       }
   }
 
-  // DELETE api/<TicketController>/5
-  [HttpDelete("{id}")]
+    [HttpPost("Favorite/setunset/{ticketId}/{userId}")]
+    public void setUnsetFavorite(int ticketId, int userId)
+    {
+      repo.setUnsetFavorite(ticketId, userId);
+    }
+
+      // DELETE api/<TicketController>/5
+      [HttpDelete("{id}")]
   public void Delete(int id)
   {
   }
