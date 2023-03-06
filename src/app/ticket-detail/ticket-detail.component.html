@@ -2,3 +2,8 @@
 <label>{{ticketDetails.resolution}}</label>
 <label>{{ticketDetails.closingUserId}}</label>
 <label>{{ticketDetails.openUserId}}</label>
+
+    <form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.openUserId, closeTicket)">
+        <p><label for="resolution">Resolution:</label> <input name="resolution" id="resolution" ngModel /> </p>
+        <p><button>Resolve Ticket</button></p>
+      </form>

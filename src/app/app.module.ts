@@ -12,7 +12,7 @@ import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
   declarations: [
     AppComponent,
     TicketListComponent,
-    TicketDetailComponent
+    TicketDetailComponent,
   ],
   imports: [
     BrowserModule,

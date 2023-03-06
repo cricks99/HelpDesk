@@ -17,12 +17,15 @@ export class TicketRepositoryService {
   getTicketList() {
     return this.http.get(this.apiUri)
   }
+
   addNewTicket(ticket: ITicket) {
     return this.http.post(`${this.apiUri}/add`, ticket)
   }
+
   getTicketDetails(ticketId: number) {
     return this.http.get<ITicket>(`${this.apiUri}/${ticketId}`)
   }
+
   getUsers() {
     return this.http.get(this.apiUser)
   }
@@ -30,6 +33,7 @@ export class TicketRepositoryService {
   getAllFavorites() {
     return this.http.get<IFavorite>(`${this.apiFavorite}/`)
   }
+  
   getFavorites(userid: number) {
     return this.http.get<IFavorite>(`${this.apiFavorite}/${userid}`)
   }
@@ -37,6 +41,10 @@ export class TicketRepositoryService {
   setUnsetFavorite(ticketId: number, userId: number)
   {
     return this.http.post(`${this.apiFavorite}/setunset/${ticketId}/${userId}`, null)
+  }
+
+  resolveTicket(ticket:any) {
+    return this.http.post(`${this.apiUri}/resolve`, ticket)
   }
 }
 
