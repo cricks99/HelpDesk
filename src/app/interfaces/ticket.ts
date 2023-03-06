@@ -6,6 +6,4 @@ export interface ITicket{
     resolution: string;
     closingUserId: number;
     isClosed: boolean;
-  
-
 }
