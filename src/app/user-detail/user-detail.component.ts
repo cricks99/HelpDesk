@@ -9,11 +9,12 @@ import { TicketRepositoryService } from '../ticket-repository.service';
 })
 export class UserDetailComponent {
 
-  @Input() userId:number = 0;
+  @Input() userIdStr:string = "";
+  userId : number = 0;
 
   user:Iuser | undefined;
   constructor(private _ticketRepo:TicketRepositoryService){
-    
+    this.userId = parseInt(this.userIdStr);
   }
 
   ngOnInit():void{

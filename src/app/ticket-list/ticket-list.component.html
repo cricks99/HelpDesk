@@ -1,11 +1,19 @@
 <h1>Welcome to the help desk.</h1>
-<select>
+<select class="form-control col-md-6">
     <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
 </select>
+<br>
 
-<h1>Here are all the tickets:</h1>
-<table> 
-<tr><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
+<h2>Here are all the tickets:</h2>
+<br>
+
+<table class="table"> 
+<tr class="table-light">
+    <th>Ticket Id</th>
+    <th>Title</th>
+    <th>Resolved</th>
+    <th>Details</th>
+</tr>
 <tr *ngFor="let ticket of tickets">
     <td>{{ticket.id}}</td>
     <td>{{ticket.title}}</td>
@@ -14,6 +22,8 @@
     <!--<td><button (click)="favorite(user.id, ticket.id)">Favorite</button></td>-->
 </tr>
 </table>    
+<br>
+
 <div *ngIf="showDetails">
     
     <app-ticket-detail [ticketId] = ticketId></app-ticket-detail>
