@@ -1,5 +1,9 @@
 <h1>Welcome to the help desk.</h1>
 
+<select>
+    <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
+</select>
+
 <p *ngIf="userid == -1">
     Before continuing, please select who you are:
 </p>

@@ -26,6 +26,13 @@ namespace HelpDeskAPI.Controllers
       return repo.GetUsers();
     }
 
+    [HttpGet("User/{id}")]
+    public User GetUserByID(int id)
+    {
+      return repo.GetUsers().Where(u => u.Id == id).FirstOrDefault();
+    }
+
+
     // GET api/<TicketController>/5
     [HttpGet("{id}")]
     public Ticket FindById(int id)
