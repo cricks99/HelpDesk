@@ -5,6 +5,6 @@ namespace HelpDeskAPI.Models
     public int Id { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
-    public virtual List<Favorite> Favorites { get; set; }
+    public virtual List<Favorite>? Favorites { get; set; }
   }
 }
