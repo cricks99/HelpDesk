@@ -44,6 +44,7 @@ export class TicketDetailComponent {
     
     this.repositoryService.resolveTicket(resolveTicket).subscribe(
       () => {
+        this.childMethod()
       }
     );
 
