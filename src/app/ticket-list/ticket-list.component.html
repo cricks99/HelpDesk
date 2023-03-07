@@ -4,6 +4,7 @@
     Before continuing, please select who you are:
 </p>
 
+
 <select id="setuser" (change) = "setuser($event)">
     <option *ngIf="userid == -1" value="-1" selected>Choose User</option>
     <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
@@ -15,8 +16,8 @@
 <h1 *ngIf="!showOnlyFavorites">Here are all the tickets:</h1>
 <h1 *ngIf="showOnlyFavorites">Here are your bookmarked tickets:</h1>
 
-<table>
-<tr><th></th><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
+<table> 
+<tr><th>Fav</th><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
 <tr *ngFor="let ticket of tickets">
     <ng-container *ngIf="!showOnlyFavorites || ticketIsFavorite(ticket.id)">
         <td>
@@ -24,7 +25,6 @@
             <i *ngIf="ticketIsFavorite(ticket.id)" class="fa fa-star" aria-hidden="true"></i>
             <i *ngIf="!ticketIsFavorite(ticket.id)" class="fa fa-star-o" aria-hidden="true"></i>
         </button>
-        </td>
         <td>{{ticket.id}}</td>
         <td>{{ticket.title}}</td>
         <td>{{ticket.isClosed}}</td>  

@@ -1,9 +1,16 @@
-<label>{{ticketDetails.description}}</label>
-<label>{{ticketDetails.resolution}}</label>
-<label>{{ticketDetails.closingUserId}}</label>
-<label>{{ticketDetails.openUserId}}</label>
+
+<table>
+    <tr>Ticket Id: {{ticketDetails.id}}</tr>
+    <tr>Title: {{ticketDetails.title}}</tr>
+    <tr>Description: {{ticketDetails.description}}</tr>
+    <tr>Resolution: {{ticketDetails.resolution}}</tr>
+    <tr>Closing Id: {{ticketDetails.closingUserId}}</tr>
+    <tr>Opening Id: {{ticketDetails.openUserId}}</tr>
+</table>
+
 
     <form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.openUserId, closeTicket)">
         <p><label for="resolution">Resolution:</label> <input name="resolution" id="resolution" ngModel /> </p>
         <p><button>Resolve Ticket</button></p>
       </form>
+
