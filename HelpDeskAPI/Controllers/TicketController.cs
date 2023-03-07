@@ -26,6 +26,13 @@ namespace HelpDeskAPI.Controllers
       return repo.GetUsers();
     }
 
+    [HttpGet("User/{id}")]
+    public User GetUserByID(int id)
+    {
+      return repo.GetUsers().Where(u => u.Id == id).FirstOrDefault();
+    }
+
+
     // GET api/<TicketController>/5
     [HttpGet("{id}")]
     public Ticket FindById(int id)
@@ -33,7 +40,7 @@ namespace HelpDeskAPI.Controllers
       return repo.GetbyId(id);
     }
 
-    
+
     [HttpGet("Favorite")]
     public List<Favorite> GetAllFavorites()
     {
@@ -56,21 +63,20 @@ namespace HelpDeskAPI.Controllers
         OpenUserId = ticket.OpenUserId,
         Description = ticket.Description
       };
-       repo.AddTicket(newTicketAdded);
+      repo.AddTicket(newTicketAdded);
       return;
     }
 
-  // PUT api/<TicketController>/5
-  [HttpPost("resolve")]
-  public HttpResponseMessage ResolveTicket(int id, string resolution, int closingUserId)
-  {
+    // PUT api/<TicketController>/5
+    [HttpPost("resolve")]
+    public HttpResponseMessage ResolveTicket(int id, string resolution, int closingUserId)
+    {
       Ticket ticketToUpdate = new Ticket
       {
         Id = id,
         Resolution = resolution,
         ClosingUserId = closingUserId,
         IsClosed = true
-
       };
       try
       {
@@ -87,7 +93,7 @@ namespace HelpDeskAPI.Controllers
       {
         return new HttpResponseMessage(HttpStatusCode.ServiceUnavailable);
       }
-  }
+    }
 
     [HttpPost("Favorite/setunset/{ticketId}/{userId}")]
     public void setUnsetFavorite(int ticketId, int userId)
@@ -95,10 +101,10 @@ namespace HelpDeskAPI.Controllers
       repo.setUnsetFavorite(ticketId, userId);
     }
 
-      // DELETE api/<TicketController>/5
-      [HttpDelete("{id}")]
-  public void Delete(int id)
-  {
+    // DELETE api/<TicketController>/5
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+    }
   }
-}
 }

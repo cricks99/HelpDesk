@@ -43,6 +43,7 @@ namespace HelpDeskAPI.DAL
       }
       ticketUpdate.Resolution = resolve.Resolution;
       ticketUpdate.ClosingUserId = resolve.ClosingUserId;
+      ticketUpdate.IsClosed = true;
       _dbContext.Tickets.Update(ticketUpdate);
       _dbContext.SaveChanges();
       return true;
