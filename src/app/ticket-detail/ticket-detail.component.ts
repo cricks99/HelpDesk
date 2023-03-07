@@ -17,7 +17,7 @@ export class TicketDetailComponent {
 
  ticketDetails: any;
  tickets: any;
- 
+  
  constructor(private repositoryService: TicketRepositoryService){}
 
  ngOnInit() : void{
@@ -29,8 +29,11 @@ export class TicketDetailComponent {
   @Input () ticketId: number = 1;
   @Input () userid: number = 1;
   @Input () showDetails: boolean = false;
- 
+  @Output() refreshParentEvent = new EventEmitter();
 
+  childMethod() {
+    this.refreshParentEvent.emit();
+  }
   resolveTicket(userId: number, form: NgForm) {
     let resolveTicket: any = {
       id: this.ticketId,
@@ -41,7 +44,6 @@ export class TicketDetailComponent {
     
     this.repositoryService.resolveTicket(resolveTicket).subscribe(
       () => {
-        this.getTickets();
       }
     );
 
@@ -49,12 +51,6 @@ export class TicketDetailComponent {
 
   };
   
-  getTickets() {
-    this.repositoryService.getTicketList().subscribe(
-      (response) => {
-        this.tickets = response;
-      });
-  }
 }
 
 

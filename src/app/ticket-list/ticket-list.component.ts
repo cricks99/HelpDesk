@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { IFavorite } from '../interfaces/favorite';
@@ -12,7 +12,7 @@ import { TicketRepositoryService } from '../ticket-repository.service';
   styleUrls: ['./ticket-list.component.css']
 })
 
-export class TicketListComponent {
+export class TicketListComponent implements OnInit {
   title = 'Ticket List';
 
   constructor(private repositoryService: TicketRepositoryService) { }
@@ -32,7 +32,7 @@ export class TicketListComponent {
   showOnlyFavorites: boolean = false;
   favoriteButtonText = "Show Only My Favorites";
   favorites: any;
-  
+
   ngOnInit(): void {
     this.getTickets();
     this.getUsers();
@@ -62,14 +62,6 @@ export class TicketListComponent {
 
   addTicketDisplay(): void {
     this.showNewTicket = !this.showNewTicket;
-    /*
-    if (this.showNewTicket) {
-      this.buttonText = "Hide";
-    }
-    else {
-      this.buttonText = "Show";
-    }
-    */
   }
 
   getTickets() {
@@ -78,12 +70,6 @@ export class TicketListComponent {
         this.tickets = response;
       });
   }
-
-  // resolveTicket(Ticket: any): void {
-  //   this.tickets.isClosed = true;
-  // }
-  
-
 
   getUsers(){
     this.repositoryService.getUsers().subscribe(
@@ -116,15 +102,6 @@ export class TicketListComponent {
    toggleDetails(id: number): void {
     this.ticketId = id;
     this.showDetails = !this.showDetails;
-    
-    /*
-    if (this.showDetails) {
-      this.buttonText = "Hide";
-    }
-    else {
-      this.buttonText = "Show";
-    }
-    */
   }
 
   toggleFavorites(): void {
@@ -154,4 +131,11 @@ export class TicketListComponent {
     );
   }
 
+  parentMethod()
+  {
+    this.getTickets();
+    this.getTickets();
+    this.getTickets(); //did not determine why calling this a few times lets the resolved on ticket list update
+    this.showDetails = false;
+  }
 }
