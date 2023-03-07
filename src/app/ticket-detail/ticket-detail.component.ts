@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ITicket } from '../interfaces/ticket';
 import { TicketRepositoryService } from '../ticket-repository.service';
+import { TicketListComponent } from '../ticket-list/ticket-list.component';
 
 
 @Component({
@@ -16,8 +17,6 @@ export class TicketDetailComponent {
 
  ticketDetails: any;
  tickets: any;
- //resolveTicket: any;
- //userId: any = 5;
  
  constructor(private repositoryService: TicketRepositoryService){}
 
@@ -28,13 +27,16 @@ export class TicketDetailComponent {
  }
 
   @Input () ticketId: number = 1;
+  @Input () userid: number = 1;
+  @Input () showDetails: boolean = false;
+  @Output() showDetailsChange = new EventEmitter<boolean>();
 
   resolveTicket(userId: number, form: NgForm) {
     let resolveTicket: any = {
-      id: userId,
-      resolution: form.form.value.resolution, //not passing resolution to backend from form, need to keep working through - NL
-      closingUserId: userId,
-      isClosed: true,
+      id: this.ticketId,
+      resolution: form.form.value.resolution,
+      closingUserId: this.userid,
+      isClosed: true
     };
     
     this.repositoryService.resolveTicket(resolveTicket).subscribe(
@@ -44,7 +46,6 @@ export class TicketDetailComponent {
     );
 
     form.resetForm();
-    //this.showNewTicket = false;
 
   };
   
@@ -54,7 +55,6 @@ export class TicketDetailComponent {
         this.tickets = response;
       });
   }
-
 }
 
 
