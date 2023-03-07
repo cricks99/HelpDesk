@@ -29,7 +29,7 @@ export class TicketDetailComponent {
   @Input () ticketId: number = 1;
   @Input () userid: number = 1;
   @Input () showDetails: boolean = false;
-  @Output() showDetailsChange = new EventEmitter<boolean>();
+ 
 
   resolveTicket(userId: number, form: NgForm) {
     let resolveTicket: any = {
