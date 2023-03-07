@@ -47,7 +47,6 @@ export class TicketRepositoryService {
     return this.http.get<Iuser>(`${this.apiUser}/${userId}`);
   }
 
-
   resolveTicket(ticket:any) {
     return this.http.post(`${this.apiUri}/resolve?id=${ticket.id}&resolution=${ticket.resolution}&closingUserId=${ticket.closingUserId}`, null)
   }
