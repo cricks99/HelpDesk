@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { IFavorite } from '../interfaces/favorite';
@@ -12,7 +12,7 @@ import { TicketRepositoryService } from '../ticket-repository.service';
   styleUrls: ['./ticket-list.component.css']
 })
 
-export class TicketListComponent implements OnInit {
+export class TicketListComponent {
   title = 'Ticket List';
 
   constructor(private repositoryService: TicketRepositoryService) { }
