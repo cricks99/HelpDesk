@@ -134,8 +134,6 @@ export class TicketListComponent {
   parentMethod()
   {
     this.getTickets();
-    this.getTickets();
-    this.getTickets(); //did not determine why calling this a few times lets the resolved on ticket list update
     this.showDetails = false;
   }
 }
