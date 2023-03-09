@@ -6,3 +6,32 @@
     float: right;
     padding-left: 5px;
 }
+
+
+
+table, tr , td {
+border: 1px solid black;
+border-collapse: collapse;
+padding: 5px;
+width: 800px;
+}
+table tr:nth-child(odd) {
+background-color: lightseagreen;
+}
+table tr:nth-child(even) {
+background-color: rgb(99, 204, 99);
+}
+
+
+button{
+    color: black;
+    background-color: rgb(106, 139, 106);
+    border: 15px;
+}
+
+select{
+    background-color: lightseagreen;
+}
+header{
+    width: 800px
+}
