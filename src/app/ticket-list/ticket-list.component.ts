@@ -14,6 +14,7 @@ import { TicketRepositoryService } from '../ticket-repository.service';
 
 export class TicketListComponent {
   title = 'Ticket List';
+ 
 
   constructor(private repositoryService: TicketRepositoryService) { }
   tickets: any;
@@ -32,6 +33,9 @@ export class TicketListComponent {
   showOnlyFavorites: boolean = false;
   favoriteButtonText = "Show Only My Favorites";
   favorites: any;
+
+
+
 
   ngOnInit(): void {
     this.getTickets();
