@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelpDeskAPI.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230227235517_Title add")]
-    partial class Titleadd
+    [Migration("20230309003757_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

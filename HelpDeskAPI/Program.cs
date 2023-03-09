@@ -24,11 +24,11 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment()) // removed the "if" statement when deployed to Azure
+//{
   app.UseSwagger();
   app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
