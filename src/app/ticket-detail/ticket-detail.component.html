@@ -7,10 +7,10 @@
     <tr>Opening Id: {{ticketDetails.openUserId}}</tr>
 </table>
 
-<ng-container *ngIf= "!ticketDetails.isClosed">
+<ng-container *ngIf="!ticketDetails.isClosed">
 
-<form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.openUserId, closeTicket)">
-    <p><label for="resolution">Resolution:</label> <input name="resolution" id="resolution" ngModel /> </p>
-    <p><button>Resolve Ticket</button></p>
-</form>
+    <form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.openUserId, closeTicket)">
+        <p><label for="resolution">Resolution:</label> <input name="resolution" id="resolution" ngModel /> </p>
+        <p><button>Resolve Ticket</button></p>
+    </form>
 </ng-container>

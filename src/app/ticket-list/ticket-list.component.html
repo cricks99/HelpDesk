@@ -5,44 +5,50 @@
 </p>
 
 
-<select id="setuser" (change) = "setuser($event)">
+<select id="setuser" (change)="setuser($event)">
     <option *ngIf="userid == -1" value="-1" selected>Choose User</option>
-    <option *ngFor=" let user of users" value = {{user.id}}>{{user.name}}</option>
+    <option *ngFor=" let user of users" value={{user.id}}>{{user.name}}</option>
 </select>
 
 <ng-container *ngIf="userid > 0">
-&nbsp;<button (click) = "toggleFavorites()">{{favoriteButtonText}}</button>
+    &nbsp;<button (click)="toggleFavorites()">{{favoriteButtonText}}</button>
 
-<h1 *ngIf="!showOnlyFavorites">Here are all the tickets:</h1>
-<h1 *ngIf="showOnlyFavorites">Here are your bookmarked tickets:</h1>
+    <h1 *ngIf="!showOnlyFavorites">Here are all the tickets:</h1>
+    <h1 *ngIf="showOnlyFavorites">Here are your bookmarked tickets:</h1>
 
-<table> 
-<tr><th>Fav</th><th>Ticket Id</th><th>Title</th><th>Resolved</th><th>Details</th></tr>
-<tr *ngFor="let ticket of tickets">
-    <ng-container *ngIf="!showOnlyFavorites || ticketIsFavorite(ticket.id)">
-        <td>
-        <button (click)="setUnsetFavorite(ticket.id, userid)" class="button-icons">
-            <i *ngIf="ticketIsFavorite(ticket.id)" class="fa fa-star" aria-hidden="true"></i>
-            <i *ngIf="!ticketIsFavorite(ticket.id)" class="fa fa-star-o" aria-hidden="true"></i>
-        </button>
-        <td>{{ticket.id}}</td>
-        <td>{{ticket.title}}</td>
-        <td>{{ticket.isClosed}}</td>  
-        <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
-    </ng-container>
-</tr>
-</table>    
+    <table>
+        <tr>
+            <th>Fav</th>
+            <th>Ticket Id</th>
+            <th>Title</th>
+            <th>Resolved</th>
+            <th>Details</th>
+        </tr>
+        <tr *ngFor="let ticket of tickets">
+            <ng-container *ngIf="!showOnlyFavorites || ticketIsFavorite(ticket.id)">
+                <td>
+                    <button (click)="setUnsetFavorite(ticket.id, userid)" class="button-icons">
+                        <i *ngIf="ticketIsFavorite(ticket.id)" class="fa fa-star" aria-hidden="true"></i>
+                        <i *ngIf="!ticketIsFavorite(ticket.id)" class="fa fa-star-o" aria-hidden="true"></i>
+                    </button>
+                <td>{{ticket.id}}</td>
+                <td>{{ticket.title}}</td>
+                <td>{{ticket.isClosed}}</td>
+                <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
+            </ng-container>
+        </tr>
+    </table>
 
-<div *ngIf="showDetails">
-    <app-ticket-detail (refreshParentEvent)="parentMethod()" [ticketId] = ticketId></app-ticket-detail>
-</div>
+    <div *ngIf="showDetails">
+        <app-ticket-detail (refreshParentEvent)="parentMethod()" [ticketId]=ticketId></app-ticket-detail>
+    </div>
 
-<button (click) = "addTicketDisplay()">Open New Ticket</button>
-<div *ngIf="showNewTicket">
-    <form #newTicket="ngForm" (ngSubmit)="addNewTicket(newTicket)">
-        <p><label for="title">Ticket Title:</label> <input name="title" id="title" ngModel /> </p>
-        <p> <label for="description">Description:</label> <input name="description" id="description" ngModel /></p>
-        <p><button>Submit Ticket</button></p>
-      </form>
-</div>
+    <button (click)="addTicketDisplay()">Open New Ticket</button>
+    <div *ngIf="showNewTicket">
+        <form #newTicket="ngForm" (ngSubmit)="addNewTicket(newTicket)">
+            <p><label for="title">Ticket Title:</label> <input name="title" id="title" ngModel /> </p>
+            <p> <label for="description">Description:</label> <input name="description" id="description" ngModel /></p>
+            <p><button>Submit Ticket</button></p>
+        </form>
+    </div>
 </ng-container>
