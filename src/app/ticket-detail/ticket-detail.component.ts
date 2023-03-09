@@ -15,25 +15,27 @@ import { TicketListComponent } from '../ticket-list/ticket-list.component';
 )
 export class TicketDetailComponent {
 
- ticketDetails: any;
- tickets: any;
-  
- constructor(private repositoryService: TicketRepositoryService){}
+  ticketDetails: any;
+  tickets: any;
 
- ngOnInit() : void{
-  this.repositoryService.getTicketDetails(this.ticketId).subscribe(
-    (response) => {
-      this.ticketDetails = response;});
- }
+  constructor(private repositoryService: TicketRepositoryService) { }
 
-  @Input () ticketId: number = 1;
-  @Input () userid: number = 1;
-  @Input () showDetails: boolean = false;
+  ngOnInit(): void {
+    this.repositoryService.getTicketDetails(this.ticketId).subscribe(
+      (response) => {
+        this.ticketDetails = response;
+      });
+  }
+
+  @Input() ticketId: number = 1;
+  @Input() userid: number = 1;
+  @Input() showDetails: boolean = false;
   @Output() refreshParentEvent = new EventEmitter();
 
   childMethod() {
     this.refreshParentEvent.emit();
   }
+
   resolveTicket(userId: number, form: NgForm) {
     let resolveTicket: any = {
       id: this.ticketId,
@@ -41,7 +43,7 @@ export class TicketDetailComponent {
       closingUserId: this.userid,
       isClosed: true
     };
-    
+
     this.repositoryService.resolveTicket(resolveTicket).subscribe(
       () => {
         this.childMethod()
@@ -51,7 +53,7 @@ export class TicketDetailComponent {
     form.resetForm();
 
   };
-  
+
 }
 
 

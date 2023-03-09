@@ -27,7 +27,7 @@ export class TicketListComponent {
   showDetails: boolean = false;
   buttonText: string = "Expand Ticket";
   userid: number = -1;
-  users: any; 
+  users: any;
   showNewTicket: boolean = false;
   showOnlyFavorites: boolean = false;
   favoriteButtonText = "Show Only My Favorites";
@@ -48,7 +48,7 @@ export class TicketListComponent {
       closingUserId: 0,
       isClosed: false,
     };
-    
+
 
     this.repositoryService.addNewTicket(newTicket).subscribe(
       () => {
@@ -71,7 +71,7 @@ export class TicketListComponent {
       });
   }
 
-  getUsers(){
+  getUsers() {
     this.repositoryService.getUsers().subscribe(
       (response) => {
         this.users = response;
@@ -93,13 +93,13 @@ export class TicketListComponent {
       }
     )
   }
-  
-  setuser(value: any){
+
+  setuser(value: any) {
     this.userid = value.target.value;
     this.getFavorites(this.userid);
   }
-    
-   toggleDetails(id: number): void {
+
+  toggleDetails(id: number): void {
     this.ticketId = id;
     this.showDetails = !this.showDetails;
   }
@@ -110,16 +110,15 @@ export class TicketListComponent {
   }
 
   public ticketIsFavorite(id: number): boolean {
-    let ok:boolean = false;
-        
+    let ok: boolean = false;
+
     this.favorites.forEach((favorite: { id: number, userId: number, ticketId: number }) => {
-      if (favorite.ticketId === id)
-      {
+      if (favorite.ticketId === id) {
         ok = true;
         return;
       }
     });
-    
+
     return ok;
   }
 
@@ -131,8 +130,7 @@ export class TicketListComponent {
     );
   }
 
-  parentMethod()
-  {
+  parentMethod() {
     this.getTickets();
     this.showDetails = false;
   }
