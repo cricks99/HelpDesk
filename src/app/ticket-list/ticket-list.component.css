@@ -5,6 +5,9 @@
     background: none;
     float: right;
     padding-left: 5px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
 }
 
 
@@ -14,6 +17,7 @@ border: 1px solid black;
 border-collapse: collapse;
 padding: 5px;
 width: 800px;
+
 }
 table tr:nth-child(odd) {
 background-color: lightseagreen;
@@ -27,11 +31,25 @@ button{
     color: black;
     background-color: rgb(106, 139, 106);
     border: 15px;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
 }
 
 select{
     background-color: lightseagreen;
+    padding: 5px;
+    width: 300px;
 }
 header{
     width: 800px
 }
+.center{
+    text-align: center;
+    align-items: center;
+}
+.fa fa-star{
+align-content: center;
+}
+
+

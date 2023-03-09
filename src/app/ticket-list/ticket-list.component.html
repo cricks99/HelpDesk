@@ -18,7 +18,7 @@
 
     <table>
         <tr>
-            <th>Fav</th>
+            <th>Favorite</th>
             <th>Ticket Id</th>
             <th>Title</th>
             <th>Resolved</th>
@@ -26,7 +26,7 @@
         </tr>
         <tr *ngFor="let ticket of tickets">
             <ng-container *ngIf="!showOnlyFavorites || ticketIsFavorite(ticket.id)">
-                <td>
+                <td class="center">
                     <button (click)="setUnsetFavorite(ticket.id, userid)" class="button-icons">
                         <i *ngIf="ticketIsFavorite(ticket.id)" class="fa fa-star" aria-hidden="true"></i>
                         <i *ngIf="!ticketIsFavorite(ticket.id)" class="fa fa-star-o" aria-hidden="true"></i>
@@ -34,7 +34,7 @@
                 <td>{{ticket.id}}</td>
                 <td>{{ticket.title}}</td>
                 <td>{{ticket.isClosed}}</td>
-                <td><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
+                <td class="center"><button (click)="toggleDetails(ticket.id)">Expand Ticket</button></td>
             </ng-container>
         </tr>
     </table>

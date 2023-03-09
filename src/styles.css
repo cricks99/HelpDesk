@@ -1,7 +1,7 @@
 :root {
     display: flex;
     height: 100vh;
-    background-color: rgb(162, 231, 168);
+    background-color: darkgray;
     justify-content: center;
     padding: 15px;
 }
