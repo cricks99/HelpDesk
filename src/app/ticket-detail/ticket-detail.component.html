@@ -9,7 +9,7 @@
 
 <ng-container *ngIf="!ticketDetails.isClosed">
 
-    <form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.openUserId, closeTicket)">
+    <form #closeTicket="ngForm" (ngSubmit)="resolveTicket(ticketDetails.UserId, closeTicket)">
         <p><label for="resolution">Resolution:</label> <input name="resolution" id="resolution" ngModel /> </p>
         <p><button>Resolve Ticket</button></p>
     </form>
